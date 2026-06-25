@@ -3,7 +3,8 @@ import { motion } from 'framer-motion'
 import my_img from '../assets/jijo_img.jpeg'
 import ParticleBackground from './ParticleBackground'
 import About from './About'
-import Navbar from './Navbar'
+import Skills from './Skills'
+
 
 
 const ROLES = ['Full Stack Developer', 'MERN Stack Engineer', 'Problem Solver']
@@ -35,12 +36,12 @@ const Home = () => {
   }
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden">
+    <section  id="home" className="relative min-h-screen w-full overflow-hidden">
      
       <ParticleBackground />
-    <Navbar/>
+    
 
-      <div
+      <div      
         className="
           relative mx-auto flex min-h-screen w-full max-w-6xl flex-col-reverse
           items-center justify-center gap-10 px-6 pt-24
@@ -57,6 +58,7 @@ const Home = () => {
           viewport={{ once: false, amount: 0.2 }}
           
         >
+
           <motion.p
             variants={item}
             className="mb-3 text-sm font-medium tracking-widest text-white/70 sm:text-base"
@@ -107,7 +109,7 @@ const Home = () => {
               whileTap={{ scale: 0.97 }}
               className="
                 flex items-center gap-2 rounded-md border border-white/40 bg-white/10
-                px-5 py-2 font-medium backdrop-blur-xl transition-colors duration-300
+                px-5 py-2 font-medium backdrop-blur-sm transition-colors duration-300
                 hover:bg-white/20
                 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white
               "
@@ -125,16 +127,17 @@ const Home = () => {
           transition={{ duration: 1, ease: 'easeOut' }}
           whileHover={{ scale: 1.03 }}
           className="
-            h-40 w-40 shrink-0 overflow-hidden rounded-full ring-2 ring-white/30
+            h-40 w-40 shrink-0 overflow-auto rounded-full ring-2 ring-white/30
             sm:h-56 sm:w-56
             md:h-72 md:w-72
             lg:h-80 lg:w-80
+            
           "
         >
           <img
             src={my_img}
             alt="Jijo John"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover  "
           />
         </motion.div>
       </div>
@@ -149,7 +152,7 @@ const Home = () => {
       >
         <i className="fa-solid fa-chevron-down text-xl" />
       </motion.button>
-        <About/>
+      
     </section>
 
   )

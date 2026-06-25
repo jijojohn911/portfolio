@@ -23,18 +23,20 @@ const ParticleBackground = () => {
           background: { color: 'transparent' },
           particles: {
             color: { value: "#ffffff" },
-            number: { value: 80 },
+            number: { value: 35 },
             size: { value: { min: 1, max: 3 } },
             move: { enable: true, speed: 0.5 },
             links: {
-              enable: true,
+              enable:true,
               color: "#ffffff",
               distance: 150,
               opacity: 0.2
             }
           },
+          detectRetina: true,
+        
           interactivity: {
-            detectsOn: "window", 
+            detectsOn: "window",
             events: {
               onHover: { enable: true, mode: "repulse" },
               onClick: { enable: true, mode: "push" },

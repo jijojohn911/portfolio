@@ -1,64 +1,72 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Navbar from './Navbar';
-import Home from './Home';
 
 const About = () => {
 
+    const containerVariants = {
+        hidden: {},
+        visible: {
+            transition: {
+                staggerChildren: 0.15,      
+                delayChildren: 0.1,          
+            }
+        }
+    };
+
     const cardVariants = {
-        hidden: { opacity: 0, x: 200 },
+        hidden: { opacity: 0, x: 80 },
         visible: {
             opacity: 1,
             x: 0,
             transition: {
-                duration: 0.7,
-                ease: "easeIn"
+                duration: 0.8,
+                ease: [0.25, 0.1, 0.25, 1],  
             }
         }
     };
 
     const cardVariants2 = {
-        hidden: { opacity: 0, y: 400 },
+        hidden: { opacity: 0, y: 60 },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
-                duration: 0.7,
-                ease: "easeIn"
+                duration: 0.8,
+                ease: [0.25, 0.1, 0.25, 1],
             }
         }
     };
 
     const cardVariants3 = {
-        hidden: { opacity: 0, x: -200 },
+        hidden: { opacity: 0, x: -80 },
         visible: {
             opacity: 1,
             x: 0,
             transition: {
-                duration: 0.7,
-                ease: "easeIn"
+                duration: 0.8,
+                ease: [0.25, 0.1, 0.25, 1],
             }
         }
     };
 
     return (
-        <section className="py-20 px-4 bg-zinc-950 text-zinc-100 min-h-screen flex items-center">
-            <Navbar/>
-          
-            <div className="max-w-6xl mx-auto w-full bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-8 md:p-12 backdrop-blur-sm ">
-
+        <section id="about" className="py-20 px-4 bg-zinc-950 text-zinc-100 min-h-screen flex items-center">
+            
+            <div className="max-w-6xl mx-auto w-full bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-8 md:p-12 ">
 
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: false, amount: 0.2 }}
-
+                    viewport={{ once: false, amount: 0.2 }} // Performance Fix: Run once on scroll entry
+                    variants={containerVariants}             
                 >
-                    {/* card 1 */}
+                    {/* Card 1 */}
                     <motion.div
-                        className="bg-zinc-950/60 border border-zinc-800 rounded-2xl p-6 flex flex-col justify-between min-h-100 hover:scale-103 hover:bg-zinc-900 "
+                        className="bg-zinc-950/60 border border-zinc-800 rounded-2xl p-6 flex flex-col justify-between min-h-100 hover:bg-zinc-900 transition-colors duration-300 ease-out"
                         variants={cardVariants}
+                        whileHover={{ scale: 1.03 }} // Performance Fix: Native Framer Motion scale
+                        
                     >
                         <div>
                             <h3 className="text-2xl font-bold tracking-tight uppercase mb-4 text-zinc-500">About Me</h3>
@@ -77,21 +85,23 @@ const About = () => {
                         </div>
 
                         <div className="grid grid-cols-2 gap-3 mt-6 font-mono text-[11px]">
-                            <div className="h-20 bg-zinc-900/30 rounded-xl border border-white/[0.04] flex flex-col items-center justify-center p-3 text-center">
+                            <div className="h-20 bg-zinc-900/30 rounded-xl border border-white/10 flex flex-col items-center justify-center p-3 text-center">
                                 <span className="text-zinc-600 text-[9px] uppercase tracking-widest mb-1">Layer 01</span>
                                 <span className="text-zinc-300 font-medium">Client Architecture</span>
                             </div>
-                            <div className="h-20 bg-zinc-900/30 rounded-xl border border-white/[0.04] flex flex-col items-center justify-center p-3 text-center">
+                            <div className="h-20 bg-zinc-900/30 rounded-xl border border-white/5 flex flex-col items-center justify-center p-3 text-center">
                                 <span className="text-zinc-600 text-[9px] uppercase tracking-widest mb-1">Layer 02</span>
                                 <span className="text-zinc-300 font-medium">Server Ecosystem</span>
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Card 2  */}
+                    {/* Card 2 */}
                     <motion.div
-                        className="bg-zinc-950 border border-zinc-700/60 rounded-2xl p-6 flex flex-col justify-between min-h-105 shadow-[0_0_30px_rgba(255,255,255,0.02)] transform md:-translate-y-2 transition-transform duration-300 hover:scale-103 hover:bg-zinc-900 "
+                        className="bg-zinc-950 border border-zinc-700/60 rounded-2xl p-6 flex flex-col justify-between min-h-105 shadow-[0_0_30px_rgba(255,255,255,0.02)] md:-mt-2 hover:bg-zinc-900 transition-colors duration-300 ease-out" // Performance Fix: Swapped translate utility for layout margin (-mt-2)
                         variants={cardVariants2}
+                        whileHover={{ scale: 1.03 }} // Performance Fix: Native Framer Motion scale
+                        style={{ willChange: 'transform, opacity' }}
                     >
                         <div className="text-center">
                             <span className="text-[10px] font-bold tracking-widest uppercase text-zinc-400 bg-zinc-800 px-2.5 py-1 rounded-full border border-zinc-700/50">
@@ -131,16 +141,18 @@ const About = () => {
                         </div>
 
                         <div className="flex space-x-2">
-                            <button href="#projects" className="flex-1 text-center bg-zinc-100 text-zinc-950 text-xs font-medium py-2.5 px-4 rounded-md hover:bg-zinc-200 transition-colors">
+                            <a href="#projects" className="flex-1 text-center bg-zinc-100 text-zinc-950 text-xs font-medium py-2.5 px-4 rounded-md hover:bg-zinc-200 transition-colors">
                                 View My Work
-                            </button>
+                            </a>
                         </div>
                     </motion.div>
 
-                    {/* Card 3  */}
+                    {/* Card 3 */}
                     <motion.div
                         variants={cardVariants3}
-                        className="bg-zinc-950/60 border border-zinc-800 rounded-2xl p-6 flex flex-col justify-between min-h-100 hover:scale-103 hover:bg-zinc-900"
+                        whileHover={{ scale: 1.03 }} // Performance Fix: Native Framer Motion scale
+                        className="bg-zinc-950/60 border border-zinc-800 rounded-2xl p-6 flex flex-col justify-between min-h-100 hover:bg-zinc-900 transition-colors duration-300 ease-out"
+                        style={{ willChange: 'transform, opacity' }}
                     >
                         <div>
                             <h3 className="text-3xl font-black tracking-tight leading-none text-zinc-100 uppercase mt-4">
