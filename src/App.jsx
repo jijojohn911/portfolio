@@ -6,6 +6,7 @@ import Skills from "./component/Skills";
 import Projects from "./component/Projects";
 import { useEffect } from "react";
 import Lenis from "lenis";
+import Contact from "./component/Contact";
 
 function App() {
   useEffect(() => {
@@ -35,7 +36,7 @@ function App() {
       <About />
       <Skills />
       <Projects />
-      {/* <Contact /> */}
+      <Contact />
     </>
   );
 }

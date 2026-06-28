@@ -50,7 +50,7 @@ const About = () => {
     };
 
     return (
-        <section id="about" className="py-20 px-4 bg-zinc-950 text-zinc-100 min-h-screen flex items-center">
+        <section id="about" className=" px-4 bg-zinc-950 text-zinc-100 h-screen flex items-center">
             
             <div className="max-w-6xl mx-auto w-full bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-8 md:p-12 ">
 

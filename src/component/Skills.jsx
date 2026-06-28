@@ -45,7 +45,7 @@ const Skills = () => {
       ? skills
       : skills.filter((e) => e.category === activeCategory)
   return (
-    <section id="skills" className="relative py-24 px-4">
+    <section id="skills" className="relative py-24 px-4 ">
 
       <div className="absolute inset-0 bg-linear-to-b from-[#050505] via-[#0a0a0a] to-[#050505] pointer-events-none" />
       <div className='relative mx-auto max-w-5xl '>
@@ -171,7 +171,7 @@ const Skills = () => {
 
 
         <div className="mt-12 pt-8  border-white/6 flex items-center gap-3 border-b ">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+          <div className="w-2 h-2 rounded-full bg-green-500  mb-5 animate-pulse" />
           <p className="text-sm font-mono text-neutral-400 tracking-wide mb-5 ">
             Always learning — currently exploring TypeScript & Three.js
           </p>

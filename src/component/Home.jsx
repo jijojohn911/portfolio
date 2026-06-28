@@ -4,6 +4,7 @@ import my_img from '../assets/jijo_img.jpeg'
 import ParticleBackground from './ParticleBackground'
 import About from './About'
 import Skills from './Skills'
+import { Link } from 'react-scroll'
 
 
 
@@ -31,9 +32,7 @@ const Home = () => {
     return () => clearInterval(id)
   }, [])
 
-  const scrollToId = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-  }
+  
 
   return (
     <section  id="home" className="relative min-h-screen w-full overflow-hidden">
@@ -68,7 +67,7 @@ const Home = () => {
 
           <motion.h1
             variants={item}
-            className="mb-3 text-4xl text-white font-bold leading-tight sm:text-5xl md:text-6xl"
+            className="mb-3 text-4xl text-white  font-serif font-bold leading-tight  tracking-tight sm:text-5xl md:text-6xl"
           >
             I'm Jijo John,
           </motion.h1>
@@ -89,12 +88,15 @@ const Home = () => {
           </motion.div>
 
           <motion.div variants={item} className="flex flex-wrap justify-center gap-4 sm:gap-6 md:justify-start">
+            <Link
+            offset={-30}
+            smooth={true}
+            to='contact'
+            duration={1000} >
             <motion.button
-              onClick={() => scrollToId('contact')}
-              whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="
-                rounded-md border-2 border-white bg-white px-5 py-2
+              className="rounded-md border-2 border-white bg-white px-5 py-2
                 font-medium text-black transition-colors duration-300
                 hover:bg-transparent hover:text-white
                 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white
@@ -102,10 +104,14 @@ const Home = () => {
             >
               Contact me
             </motion.button>
-
+            </Link>
+            <Link
+            to='projects'
+            smooth={true}
+            duration={1000}
+            offset={-30}>
             <motion.button
-              onClick={() => scrollToId('portfolio')}
-              whileHover={{ scale: 1.05 }}
+             whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               className="
                 flex items-center gap-2 rounded-md border border-white/40 bg-white/10
@@ -117,6 +123,7 @@ const Home = () => {
               Explore Portfolio
               <i className="fa-solid fa-arrow-right-long transition-transform duration-300 group-hover:translate-x-1 hover:text-zinc-100" />
             </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -143,8 +150,13 @@ const Home = () => {
       </div>
 
       {/* Scroll cue */}
+      <Link
+      offset={-50}
+      to='about'
+      duration={1000}
+      smooth={true}>
       <motion.button
-        onClick={() => scrollToId('about')}
+       
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-white/30 hover:text-white"
@@ -152,6 +164,7 @@ const Home = () => {
       >
         <i className="fa-solid fa-chevron-down text-xl" />
       </motion.button>
+      </Link>
       
     </section>
 
