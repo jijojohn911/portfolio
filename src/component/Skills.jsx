@@ -14,9 +14,6 @@ import express_icon from '../assets/express_icon.svg'
 import { motion } from 'framer-motion'
 
 
-
-
-
 const skills = [
   { name: 'React', icon: react_icon, category: 'Frontend', level: 90 },
   { name: 'JavaScript', icon: js_icon, category: 'Language', level: 92 },
@@ -28,7 +25,7 @@ const skills = [
   { name: 'MongoDB', icon: mongodb_icon, category: 'Database', level: 78 },
   { name: 'Git', icon: gitignore_icon, category: 'Tools', level: 85 },
   { name: 'GitHub', icon: github_icon, category: 'Tools', level: 88 },
-  { name: 'Next.js', icon: nextjs_icon, category: 'Frontend', level: 'learning' }
+  { name: 'Next.js', icon: nextjs_icon, category: 'Frontend', level: 90 }
 ]
 
 
@@ -80,7 +77,6 @@ const Skills = () => {
           Technologies I use daily to build fast, scalable, and modern web applications.
         </p>
 
-        {/* category  */}
         <motion.div
           className="flex flex-wrap gap-2 mb-10"
           initial={{ opacity: 0, scale: 0 }}
@@ -96,7 +92,7 @@ const Skills = () => {
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-1.5 rounded-full text-sm font-mono transition-all duration-300 border cursor-pointer ${activeCategory === cat
-                ? 'bg-border-[#10b981]/10 border-[#10b981]/40 text-[#10b981] text-e shadow-[0_0_10px_rgba(16,185,129,0.15)] animate-pulse'
+                ? 'bg-[#10b981]/10 border-[#10b981]/40 text-[#10b981] shadow-[0_0_10px_rgba(16,185,129,0.15)] animate-pulse'
                 : 'bg-white/2 border-white/10 text-neutral-400 hover:border-white/25 hover:text-neutral-300'
                 }`}
             >
@@ -106,21 +102,21 @@ const Skills = () => {
         </motion.div>
 
         <div className='grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-4 gap-4 '>
-          {filterSkills.map((skill,index) => (
+          {filterSkills.map((skill, index) => (
             <motion.div
               key={skill.name}
-              onMouseEnter={()=>setHoverIndex(skill.name)}
-              onMouseLeave={()=>hoverIndex(null)}
+              onMouseEnter={() => setHoverIndex(skill.name)}
+              onMouseLeave={() => setHoverIndex(null)}
               initial={{ opacity: 0, scale: 0 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false }}
               transition={{
                 duration: 0.4,
-                delay: skill.name * 0.1,
+                delay: index * 0.1,
 
               }}
 
-              className='relative rounded-xl border border-white/6 bg-zinc-500/2  p-6  flex flex-col items-center gap-5 cursor-default overflow-hidden transition-all duration-300 hover:bg-emerald-500/5 hover:scale-105 '
+              className='group relative rounded-xl border border-white/6 bg-zinc-500/2  p-6  flex flex-col items-center gap-5 cursor-default overflow-hidden transition-all duration-300 hover:bg-emerald-500/5 hover:scale-105 '
             >
 
 
@@ -129,7 +125,7 @@ const Skills = () => {
                   className="w-7 h-7 object-contain transition-transform duration-500 group-hover:scale-110"
                   style={{
                     filter:
-                      hoverIndex === index
+                      hoverIndex === skill.name
                         ? 'brightness(1.2) drop-shadow(0 0 6px rgba(16,185,129,0.6))'
                         : 'brightness(0.9)'
                   }}
@@ -157,12 +153,12 @@ const Skills = () => {
                 />
               </div>
               <span
-                className="absolute top-3 right-3 text-[10px] font-mono text-orange-500/0 transition-all duration-300"
+                className="absolute top-3 right-3 text-[10px] font-mono transition-all duration-300"
                 style={{
                   opacity: hoverIndex === skill.name ? 1 : 0,
                   color: 'rgba(5,150,105,0.7)',
                 }}
-              >{skill.level}{typeof skill.level === 'number' ? '%' : ''}
+              >{skill.level}%
               </span>
             </motion.div>
           ))}

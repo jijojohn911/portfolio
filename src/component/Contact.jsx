@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 
@@ -17,12 +17,19 @@ const item = {
 
 const Contact = () => {
 
+    const [copiedEmail, setCopiedEmail] = useState(false)
+    const [copiedNumber, setCopiedNumber] = useState(false)
+
     const copyEmail = () => {
         navigator.clipboard.writeText("jijojohn911@gmail.com")
+        setCopiedEmail(true)
+        setTimeout(() => setCopiedEmail(false), 2000)
     }
 
     const copyNumber = () => {
         navigator.clipboard.writeText("+91 9656093498")
+        setCopiedNumber(true)
+        setTimeout(() => setCopiedNumber(false), 2000)
     }
 
 
@@ -67,7 +74,7 @@ const Contact = () => {
         }
     }
     return (
-        <section id='contact' className='w-full min-h-screen bg-black flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-6 font-serif  px-4 sm:px-8 lg:px-16 overflow-x-hidden '>
+        <section id='contact' className='w-screen min-h-screen bg-black flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-6 font-serif px-4 sm:px-8 lg:px-16'>
 
             <motion.div
                 variants={Container}
@@ -97,7 +104,13 @@ const Contact = () => {
                     variants={item}
                     className='flex justify-center md:justify-start items-center gap-3 mb-4 hover:text-emerald-500 transition-colors w-fit mx-auto md:mx-0'>
                     <p className='text-base sm:text-lg break-all'>jijojohn911@gmail.com</p>
-                    <i onClick={copyEmail} className="fa-regular fa-copy cursor-pointer"></i>
+                    <button
+                        onClick={copyEmail}
+                        aria-label="Copy email address"
+                        className='cursor-pointer'>
+                        <i className={`fa-regular ${copiedEmail ? 'fa-check text-emerald-500' : 'fa-copy'}`}></i>
+                    </button>
+                    {copiedEmail && <span className='text-xs text-emerald-500'>Copied!</span>}
                 </motion.div>
 
                 <motion.label
@@ -107,8 +120,14 @@ const Contact = () => {
                 <motion.div
                     variants={item}
                     className='flex justify-center md:justify-start items-center gap-3 mb-4 hover:text-emerald-500 transition-colors w-fit mx-auto md:mx-0'>
-                    <p className='font-mono text-base sm:text-lg'>(+91) 96x60xxxxxx</p>
-                    <i onClick={copyNumber} className="fa-regular fa-copy ml-5 cursor-pointer"></i>
+                    <p className='font-mono text-base sm:text-lg'>+91 9656093498</p>
+                    <button
+                        onClick={copyNumber}
+                        aria-label="Copy phone number"
+                        className='ml-5 cursor-pointer'>
+                        <i className={`fa-regular ${copiedNumber ? 'fa-check text-emerald-500' : 'fa-copy'}`}></i>
+                    </button>
+                    {copiedNumber && <span className='text-xs text-emerald-500'>Copied!</span>}
                 </motion.div>
 
                 <motion.div
@@ -116,9 +135,30 @@ const Contact = () => {
                     className='mb-4'>
                     <h5>Follow me</h5>
 
-                    <button className='text-2xl m-3 hover:text-emerald-500'><i className="fa-brands fa-github"></i></button>
-                    <button className='text-2xl m-3 hover:text-emerald-500'><i className="fa-brands fa-instagram"></i></button>
-                    <button className='text-2xl m-3 hover:text-emerald-500'><i className="fa-brands fa-linkedin"></i></button>
+                    <a
+                        href="https://github.com/jijojohn911"
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        aria-label="GitHub"
+                        className='text-2xl m-3 hover:text-emerald-500 inline-block'>
+                        <i className="fa-brands fa-github"></i>
+                    </a>
+                    <a
+                        href="https://instagram.com/cosmitox_07"
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        aria-label="Instagram"
+                        className='text-2xl m-3 hover:text-emerald-500 inline-block'>
+                        <i className="fa-brands fa-instagram"></i>
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/jijo-john-5a251b408/"
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        aria-label="LinkedIn"
+                        className='text-2xl m-3 hover:text-emerald-500 inline-block'>
+                        <i className="fa-brands fa-linkedin"></i>
+                    </a>
                 </motion.div>
             </motion.div>
 
@@ -136,7 +176,7 @@ const Contact = () => {
                             name='from_firstName'
                             value={formData.from_firstName}
                             onChange={handleChange}
-                            type="text" placeholder='enter first name'
+                            type="text" placeholder='Enter first name'
                             className='border border-emerald-500 px-3 py-1 rounded w-full' />
                     </div>
 
@@ -170,7 +210,7 @@ const Contact = () => {
                         onChange={handleChange}
                         type="email"
                         required
-                        placeholder='Enter Email'
+                        placeholder='Enter email'
                         className='border border-emerald-500 w-full rounded px-3 py-1 mb-4' />
 
                     <label
@@ -183,6 +223,7 @@ const Contact = () => {
                         name='from_subject'
                         onChange={handleChange}
                         type="text"
+                        placeholder='Subject'
                         required
                         className='border border-emerald-500 w-full rounded px-3 py-1 mb-4' />
 
@@ -196,24 +237,23 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                         rows='5'
-                        placeholder='Type your message here ...'
+                        placeholder='Type your message here...'
                         className='border py-2 px-2 mb-4 rounded border-emerald-400 w-full'
                     ></textarea>
                 </div>
                 <button
                     disabled={status === 'Sending'}
-
-                    className='text-zinc-800 bg-emerald-600 rounded p-2 w-full hover:bg-emerald-700 transition-colors font-bold'>
-                    {status === 'Sending' ? 'Sending...' : 'Sumbit'}
+                    className='text-zinc-800 bg-emerald-600 rounded p-2 w-full hover:bg-emerald-700 transition-colors font-bold disabled:opacity-60'>
+                    {status === 'Sending' ? 'Sending...' : 'Send Message'}
                 </button>
                 {status === 'success' && (
                     <p className='text-emerald-500 text-sm mt-2'>
-                        Message sent Successfully! I'll get back To you soon.
+                        Message sent successfully! I'll get back to you soon.
                     </p>
                 )}
                 {status === "error" && (
                     <p className='text-red-500 text-sm mt-2'>
-                        Failed to send Message. Please try again
+                        Failed to send message. Please try again.
                     </p>
                 )}
 

@@ -97,9 +97,9 @@ const Navbar = () => {
           className="cursor-pointer"
           onClick={() => setIsOpen(false)}
         >
-          <div className="w-10 flex shrink-0">
-            <img src={logo} alt="logo" className="w-30 h-8 rounded-full" />
-            <div className="w-4.5 h-1.5 mt-6 rounded-full bg-green-500 animate-pulse" />
+          <div className="w-10 h-8 flex items-center shrink-0 relative">
+            <img src={logo} alt="logo" className="w-8 h-8 rounded-full object-cover" />
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse absolute -bottom-0.5 -right-0.5 border border-black" />
           </div>
         </Link>
 
