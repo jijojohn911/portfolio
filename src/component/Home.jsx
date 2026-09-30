@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import  { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import my_img from '../assets/jijo_img.jpeg'
 import ParticleBackground from './ParticleBackground'
-import About from './About'
-import Skills from './Skills'
 import { Link } from 'react-scroll'
 
 
@@ -114,9 +112,9 @@ const Home = () => {
              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               className="
-                flex items-center gap-2 rounded-md border border-white/40 bg-white/10
+                flex items-center gap-2 rounded-md border border-white/10 bg-white/40
                 px-5 py-2 font-medium backdrop-blur-sm transition-colors duration-300
-                hover:bg-white/20
+                hover:bg-white/20 text-white
                 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-white
               "
             >
