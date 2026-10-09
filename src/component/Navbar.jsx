@@ -66,8 +66,8 @@ const Navbar = () => {
 
         {/* Desktop CV download button */}
         <a
-          href="/Jijo_John_CV.pdf"
-          download="Jijo_John_CV.pdf"
+          href="/Jijo_John_CV_intership.pdf"
+          download="Jijo_John_CV_intership.pdf"
           className="
             hidden sm:flex items-center gap-1.5
             px-4 py-2 text-sm font-medium tracking-wide
